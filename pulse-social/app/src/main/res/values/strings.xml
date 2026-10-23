@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Pulse Social</string>
+    <string name="tagline">Real-time news feeds, reactions, and friend connections</string>
+    <string name="sign_in_with_google">Continue with Google</string>
+    <string name="nav_feed">Feed</string>
+    <string name="nav_friends">Friends</string>
+    <string name="nav_activity">Activity</string>
+    <string name="nav_profile">Profile</string>
+    <string name="whats_on_your_mind">What\'s on your mind?</string>
+    <string name="create_post">Create Post</string>
+    <string name="publish_post">Post</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="cancel">Cancel</string>
+    <string name="like_action">Like</string>
+    <string name="comment_action">Comment</string>
+    <string name="share_action">Share</string>
+    <string name="friend_requests">Friend Requests</string>
+    <string name="my_friends">My Friends</string>
+    <string name="discover_people">Discover People</string>
+    <string name="accept_request">Confirm</string>
+    <string name="decline_request">Delete</string>
+    <string name="add_friend">Add Friend</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="empty_feed_title">Your News Feed is Ready</string>
+    <string name="empty_feed_subtitle">Share your first status update, milestone, or question with the Pulse Social community.</string>
+</resources>

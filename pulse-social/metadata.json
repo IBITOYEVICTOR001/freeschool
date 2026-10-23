@@ -1,0 +1,6 @@
+{
+  "name": "Pulse Social",
+  "description": "A real-time social networking platform with live news feeds, reactions, comments, and friend connections.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

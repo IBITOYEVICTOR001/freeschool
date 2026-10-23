@@ -1,0 +1,294 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Public social networking profile for a user on Pulse Social (strictly non-PII).",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The Firebase Auth UID of the profile owner."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Public display name shown on posts, comments, and friend lists (1-60 chars)."
+        },
+        "handle": {
+          "type": "string",
+          "description": "Unique-style handle tag (e.g. @alex_rivera, 1-40 chars)."
+        },
+        "bio": {
+          "type": "string",
+          "description": "Short biography or status tagline (0-300 chars)."
+        },
+        "workplace": {
+          "type": "string",
+          "description": "Workplace or role description (0-80 chars)."
+        },
+        "hometown": {
+          "type": "string",
+          "description": "City or region name (0-80 chars)."
+        },
+        "avatarTheme": {
+          "type": "string",
+          "description": "Color palette identifier for avatar styling (1-30 chars)."
+        },
+        "coverTheme": {
+          "type": "string",
+          "description": "Banner theme identifier for profile cover (1-30 chars)."
+        },
+        "visibility": {
+          "type": "string",
+          "enum": ["public"],
+          "description": "Visibility of the public directory profile."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when profile was created. Clients must submit FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when profile was updated. Clients must submit FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "displayName",
+        "handle",
+        "bio",
+        "workplace",
+        "hometown",
+        "avatarTheme",
+        "coverTheme",
+        "visibility",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Post": {
+      "title": "Post",
+      "description": "A real-time news feed post authored by a user.",
+      "type": "object",
+      "properties": {
+        "authorId": {
+          "type": "string",
+          "description": "UID of the user who created the post."
+        },
+        "authorName": {
+          "type": "string",
+          "description": "Display name of the post author (1-60 chars)."
+        },
+        "authorHandle": {
+          "type": "string",
+          "description": "Handle of the post author (1-40 chars)."
+        },
+        "authorAvatarTheme": {
+          "type": "string",
+          "description": "Avatar theme key of the author (1-30 chars)."
+        },
+        "content": {
+          "type": "string",
+          "description": "Main text body of the post (1-2000 chars)."
+        },
+        "feeling": {
+          "type": "string",
+          "description": "Optional feeling or activity badge (0-60 chars)."
+        },
+        "mediaPreset": {
+          "type": "string",
+          "description": "Visual card banner preset or attached photo URI (0-500 chars)."
+        },
+        "category": {
+          "type": "string",
+          "enum": ["status", "milestone", "question", "photo"],
+          "description": "Post category for news feed filtering."
+        },
+        "visibility": {
+          "type": "string",
+          "enum": ["public", "friends"],
+          "description": "Audience visibility level of the post."
+        },
+        "likesCount": {
+          "type": "integer",
+          "description": "Total number of reactions/likes on the post."
+        },
+        "commentsCount": {
+          "type": "integer",
+          "description": "Total number of comments on the post."
+        },
+        "likedByUids": {
+          "type": "array",
+          "description": "Bounded list of up to 50 user UIDs who reacted to the post."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when post was created. Clients must submit FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when post was updated. Clients must submit FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "authorId",
+        "authorName",
+        "authorHandle",
+        "authorAvatarTheme",
+        "content",
+        "feeling",
+        "mediaPreset",
+        "category",
+        "visibility",
+        "likesCount",
+        "commentsCount",
+        "likedByUids",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "A comment on a news feed post.",
+      "type": "object",
+      "properties": {
+        "postId": {
+          "type": "string",
+          "description": "ID of the parent post document."
+        },
+        "authorId": {
+          "type": "string",
+          "description": "UID of the comment author."
+        },
+        "authorName": {
+          "type": "string",
+          "description": "Display name of the comment author (1-60 chars)."
+        },
+        "authorAvatarTheme": {
+          "type": "string",
+          "description": "Avatar theme key of the comment author (1-30 chars)."
+        },
+        "text": {
+          "type": "string",
+          "description": "Comment message body (1-1000 chars)."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when comment was created. Clients must submit FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "postId",
+        "authorId",
+        "authorName",
+        "authorAvatarTheme",
+        "text",
+        "createdAt"
+      ]
+    },
+    "Friendship": {
+      "title": "Friendship",
+      "description": "A friend request or active friend connection between two users.",
+      "type": "object",
+      "properties": {
+        "requesterId": {
+          "type": "string",
+          "description": "UID of the user who initiated the friend request."
+        },
+        "requesterName": {
+          "type": "string",
+          "description": "Display name of the requester (1-60 chars)."
+        },
+        "requesterHandle": {
+          "type": "string",
+          "description": "Handle of the requester (1-40 chars)."
+        },
+        "requesterBio": {
+          "type": "string",
+          "description": "Short bio of the requester (0-200 chars)."
+        },
+        "requesterAvatarTheme": {
+          "type": "string",
+          "description": "Avatar theme of the requester (1-30 chars)."
+        },
+        "receiverId": {
+          "type": "string",
+          "description": "UID of the user receiving the friend request."
+        },
+        "receiverName": {
+          "type": "string",
+          "description": "Display name of the receiver (1-60 chars)."
+        },
+        "receiverHandle": {
+          "type": "string",
+          "description": "Handle of the receiver (1-40 chars)."
+        },
+        "receiverBio": {
+          "type": "string",
+          "description": "Short bio of the receiver (0-200 chars)."
+        },
+        "receiverAvatarTheme": {
+          "type": "string",
+          "description": "Avatar theme of the receiver (1-30 chars)."
+        },
+        "memberUids": {
+          "type": "array",
+          "description": "Two-element array containing [requesterId, receiverId] for relational list queries."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "accepted", "declined"],
+          "description": "Status of the friendship connection."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when request was created. Clients must submit FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when friendship status was updated. Clients must submit FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "requesterId",
+        "requesterName",
+        "requesterHandle",
+        "requesterBio",
+        "requesterAvatarTheme",
+        "receiverId",
+        "receiverName",
+        "receiverHandle",
+        "receiverBio",
+        "receiverAvatarTheme",
+        "memberUids",
+        "status",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/profiles/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Public directory profiles for users."
+    },
+    "/posts/{postId}": {
+      "schema": { "$ref": "#/entities/Post" },
+      "description": "News feed posts visible to public or friends."
+    },
+    "/posts/{postId}/comments/{commentId}": {
+      "schema": { "$ref": "#/entities/Comment" },
+      "description": "Comments subcollection on a specific news feed post."
+    },
+    "/friendships/{friendshipId}": {
+      "schema": { "$ref": "#/entities/Friendship" },
+      "description": "Friend connections and pending friend requests scoped to memberUids."
+    }
+  }
+}
